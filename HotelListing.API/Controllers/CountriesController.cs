@@ -42,7 +42,7 @@ namespace HotelListing.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CountryDto>> GetCountry(int id)
         {
-            var country = _countriesRepository.GetDetails(id);
+            var country = await _countriesRepository.GetDetails(id);
 
             if (country == null)
             {

@@ -2,6 +2,7 @@ using HotelListing.API.Configurations;
 using HotelListing.API.Contracts;
 using HotelListing.API.Data;
 using HotelListing.API.Repository;
+using HotelListing.API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -34,10 +35,11 @@ builder.Services.AddAutoMapper(typeof(MapperConfig));
 //Notice below the dependency injection for the IGenericRepository and GenericRepository
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+
 builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<HotelListingDbContext>();
-
+builder.Services.AddScoped<IAuthManager, AuthManager>();
 var app = builder.Build();
 
 

@@ -61,7 +61,6 @@ namespace HotelListing.API.Controllers
             {
                 return BadRequest();
             }
-
             
             var country = await _countriesRepository.GetAsync(id);
             if (country == null)

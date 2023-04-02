@@ -7,7 +7,8 @@ namespace HotelListing.API.Repository
     public class CountriesRepository : GenericRepository<Country>, ICountriesRepository
     {
         private readonly HotelListingDbContext _context;
-
+        
+        //Notice in constructor below how is taking a copy of the context and passing it to the base. I am not clear about that
         public CountriesRepository(HotelListingDbContext context) : base(context)
         {
             this._context = context;

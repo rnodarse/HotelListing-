@@ -1,7 +1,9 @@
 ﻿using HotelListing.API.Contracts;
 using HotelListing.API.Models.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace HotelListing.API.Controllers
 {
@@ -24,6 +26,26 @@ namespace HotelListing.API.Controllers
         public async Task<ActionResult> Register([FromBody] ApiUserDto apiUserDto)
         {
             var errors = await _authManager.Register(apiUserDto);
+            if (errors.Any())
+            {
+                foreach (var error in errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+                return BadRequest(ModelState);
+            }
+
+            return Ok();
+        }
+
+        [HttpPost, Route("register Administrators")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult> RegisterAdmins([FromBody] ApiUserDto apiUserDto)
+        {
+            var errors = await _authManager.RegisterAdmins(apiUserDto);
             if (errors.Any())
             {
                 foreach (var error in errors)

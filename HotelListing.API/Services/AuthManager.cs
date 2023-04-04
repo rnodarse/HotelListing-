@@ -65,6 +65,22 @@ namespace HotelListing.API.Services
             // If the creation of the user was successfull, it will return no errors
             return result.Errors;
         }
+
+        public async Task<IEnumerable<IdentityError>> RegisterAdmins(ApiUserDto userDto)
+        {
+            var user = _mapper.Map<ApiUser>(userDto);
+            user.UserName = userDto.Email;
+
+            var result = await _userManager.CreateAsync(user, userDto.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Administrator");
+            }
+            //If the creation of the user was successfull, it will return no errors
+            return result.Errors;
+        }
+
+
         private async Task<string> GenerateToken(ApiUser user)
         {
             var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Key"]));

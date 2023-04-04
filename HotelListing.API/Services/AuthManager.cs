@@ -22,7 +22,7 @@ namespace HotelListing.API.Services
             this._userManager = userManager;
             this._configuration = configuration;
         }
-        public async Task<bool> Login(LoginDto loginDto)
+        public async Task<AuthResponseDto> Login(LoginDto loginDto)
         {
             var _user = await _userManager.FindByEmailAsync(loginDto.Email);
             if (_user is null)
@@ -36,7 +36,12 @@ namespace HotelListing.API.Services
             {
                 return default;
             }
-            return isValidCredentials;
+            var token = await GenerateToken(_user);
+            return new AuthResponseDto
+            {
+                Token = token,
+                UserId = _user.Id,
+            };
         }
 
         public async Task<IEnumerable<IdentityError>> Register(ApiUserDto userDto)

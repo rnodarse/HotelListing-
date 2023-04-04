@@ -49,10 +49,19 @@ namespace HotelListing.API.Services
             var user = _mapper.Map<ApiUser>(userDto);
             user.UserName = userDto.Email;
             var result = await _userManager.CreateAsync(user, userDto.Password);
-            if (result.Succeeded)
+            
+            if (user.UserName == "admin@example.com" && result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, "Administrator");
+            }
+            else
             {
                 await _userManager.AddToRoleAsync(user, "User");
             }
+            //if (result.Succeeded)
+            //{
+            //    await _userManager.AddToRoleAsync(user, "User");
+            //}
             // If the creation of the user was successfull, it will return no errors
             return result.Errors;
         }

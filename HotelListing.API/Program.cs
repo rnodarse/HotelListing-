@@ -41,7 +41,9 @@ builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 
 builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<HotelListingDbContext>();
+    .AddTokenProvider<DataProtectorTokenProvider<ApiUser>>("HotelListing")
+    .AddEntityFrameworkStores<HotelListingDbContext>()
+    .AddDefaultTokenProviders();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 builder.Services.AddAuthentication(options =>
 {

@@ -7,6 +7,8 @@ namespace HotelListing.API.Contracts
     {
         Task<IEnumerable<IdentityError>> Register(ApiUserDto userDto);
         Task<IEnumerable<IdentityError>> RegisterAdmins(ApiUserDto userDto);
+        Task<string> CreateRefreshToken();
+        Task<AuthResponseDto> VerifyRefreshToken(AuthResponseDto authResponseDto);
         Task<AuthResponseDto> Login(LoginDto userDto);
     }
 }

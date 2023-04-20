@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Configurations\**" />
+    <Compile Remove="Contracts\**" />
+    <Compile Remove="Data\**" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="Middleware\**" />
+    <Compile Remove="Migrations\**" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="Repository\**" />
+    <Compile Remove="Services\**" />
+    <Content Remove="Configurations\**" />
+    <Content Remove="Contracts\**" />
+    <Content Remove="Data\**" />
+    <Content Remove="Exceptions\**" />
+    <Content Remove="Middleware\**" />
+    <Content Remove="Migrations\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="Repository\**" />
+    <Content Remove="Services\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Middleware\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Repository\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="Configurations\**" />
+    <None Remove="Contracts\**" />
+    <None Remove="Data\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="Middleware\**" />
+    <None Remove="Migrations\**" />
+    <None Remove="Models\**" />
+    <None Remove="Repository\**" />
+    <None Remove="Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.16" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OData" Version="8.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.11" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Serilog.Expressions" Version="3.4.1" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\1APIProject.Data\1HotelListing.Data.csproj" />
+    <ProjectReference Include="..\2APIProject.DataAccess\2HotelListing.DataAccess.csproj" />
+    <ProjectReference Include="..\3APIProject.BusinessLogic\3HotelListing.BusinessLogic.csproj" />
+  </ItemGroup>
+
+</Project>
